@@ -51,7 +51,7 @@ Some predicted Results
 
 
 
-![mask](https://user-images.githubusercontent.com/69388951/106386823-a7039080-63f8-11eb-8f13-b54b175a2bb2.png)
+![mask](https://user-images.githubusercontent.com/69388951/106396686-696c2b00-642b-11eb-898d-4e412a84282d.png)
 
 
 
