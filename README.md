@@ -29,4 +29,8 @@ Some predicted Results
 
 Input Image
 
+
+![input](https://user-images.githubusercontent.com/69388951/106386740-4d9b6180-63f8-11eb-824e-0a6436fc1990.png)
+
+
 Binary Mask
