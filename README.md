@@ -30,16 +30,44 @@ Some predicted Results
 Input Image
 
 
+
+
 ![input](https://user-images.githubusercontent.com/69388951/106386740-4d9b6180-63f8-11eb-824e-0a6436fc1990.png)
+
+
+
 
 
 Binary Mask
 
 
+
+
+
 ![mask](https://user-images.githubusercontent.com/69388951/106386823-a7039080-63f8-11eb-8f13-b54b175a2bb2.png)
+
+
+
+
 
 
 Blur Image
 
+
+
+
+
 ![blur](https://user-images.githubusercontent.com/69388951/106386863-dadeb600-63f8-11eb-954e-c6766dd254a7.png)
+
+
+
+
+
+Bukeh Effect
+
+
+
+
+![bukeh](https://user-images.githubusercontent.com/69388951/106386904-0a8dbe00-63f9-11eb-9f9d-b820c0e20135.jpg)
+
 
