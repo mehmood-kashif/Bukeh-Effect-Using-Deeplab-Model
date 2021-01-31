@@ -15,11 +15,11 @@ Semantic segmentation is defined as assigning class to each pixel in a given ima
 
 
 
-## Model
+## Deeplab V3
 
 We have used Deeplab V3 model for semantic segmentation. The code automatically download the model. 
 
-## Deeplab V3
+
 
 
 
