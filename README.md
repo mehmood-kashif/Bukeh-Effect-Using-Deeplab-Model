@@ -38,8 +38,7 @@ Some predicted Results
 
 
 
-
-![orininal](https://user-images.githubusercontent.com/69388951/106396645-1b572780-642b-11eb-97c6-b1b96f7136cc.png)
+![original](https://user-images.githubusercontent.com/69388951/106396772-e1d2ec00-642b-11eb-9355-9873dc50f04c.png)
 
 
 
