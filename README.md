@@ -8,6 +8,13 @@ Semantic Segmentation
 
 Semantic segmentation is defined as assigning class to each pixel in a given image. The main task of segmentation is simplifying or changing the representation of image into segments which are easier to analyse and more meaningful. Semantic segmentation is different from the classification in a way that classification assigns class to the whole image whereas semantic segmentation classifies each image pixel to one of the class.
 
+Pipeline
+
+
+![pipeleine](https://user-images.githubusercontent.com/69388951/106387069-d1a21900-63f9-11eb-9d80-939d1063b362.JPG)
+
+
+
 Model
 
 We have used Deeplab V3 model for semantic segmentation. The code automatically download the model. 
