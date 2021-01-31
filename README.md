@@ -78,3 +78,8 @@ Bukeh Effect
 ![bukeh](https://user-images.githubusercontent.com/69388951/106386904-0a8dbe00-63f9-11eb-9f9d-b820c0e20135.jpg)
 
 
+For inference 
+
+
+python3 inference.py -input images
+
