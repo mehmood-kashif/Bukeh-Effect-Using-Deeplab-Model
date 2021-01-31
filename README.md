@@ -16,6 +16,10 @@ Deeplab V3
 
 
 
+![model](https://user-images.githubusercontent.com/69388951/106385154-8afbf100-63f0-11eb-8fe6-b5de73bd331c.png)
+
+
+
 
 
 Morphological operations
