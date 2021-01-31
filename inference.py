@@ -11,9 +11,8 @@ import tarfile
 from six.moves import urllib
 import numpy as np
 from PIL import Image
-import cv2
+import cv2, argparse
 import tensorflow as tf
-from PIL import Image
 import numpy
 
 class DeepLabModel(object):
@@ -107,6 +106,11 @@ def label_to_color_image(label):
 
 	return colormap[label]
 
+parser = argparse.ArgumentParser(description='Deeplab Segmentation')
+parser.add_argument('-input', '--input_dir', type=str, required=True,help='Directory to read Images. (required)')
+
+
+args=parser.parse_args()
 
 LABEL_NAMES = np.asarray([
 	'background', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus',
@@ -149,40 +153,63 @@ print('model loaded successfully!')
 
 ###################################################################################################
 #input the image
-img = cv2.imread('kashif.png')
+image_no = 1   
+for img_name in os.listdir(args.input_dir):
 
-#Convert opencv image format to PIL image format
-pil_img = Image.fromarray( cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    img = Image.open(args.input_dir + '/' + img_name)  
+    
+    #pass the image to model
+    res_im,seg=MODEL.run(img)    
+            
+    #creating binary mask
+    seg=cv2.resize(seg.astype(np.uint8),img.size)
+    mask_sel=(seg==15).astype(np.float32)
+    mask = 255*mask_sel.astype(np.uint8)  
+    
+    #converting original image to BGR            
+    opencvImage = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
+    
+    #Use Morphological erotion process to reduce the noise, now this is erotic mask
+    kernel = np.ones((5,5),np.uint8)
+    erosion = cv2.erode(mask,kernel,iterations = 1)
+     
+    #Blur the original image
+    blurred_image = cv2.GaussianBlur(opencvImage,(255,255), 0)
+                
+    #Multiply erotic mask and orinall image
+    original_obj = cv2.bitwise_and(opencvImage,opencvImage,mask = erosion)
+                
+    #inverse the binary mask
+    inverse_mask = cv2.bitwise_not(erosion)
+                
+    #Multiply blured image and inverse mask
+    blur_bg = cv2.bitwise_and(blurred_image,blurred_image ,mask = inverse_mask)
+                
+    #now add the original obj image and blur bg image in order to obtain bukeh effect
+    bukeh_effect = cv2.add(original_obj,blur_bg)
+    
+    
+    
+    #Save the resultant images in directory             
+    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Binary Mask' + str(image_no) + '.jpg', erosion)
+    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Blurred Image' + str(image_no) + '.jpg', blurred_image)
+    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Original Object' + str(image_no) + '.jpg' , original_obj)
+    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Inverse Mask' + str(image_no) + '.jpg' , inverse_mask)
+    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Blur Background' + str(image_no) + '.jpg' , blur_bg)
+    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Bukeh Effect' + str(image_no) + '.jpg', bukeh_effect)
 
-#pass the image to model
-res_im,seg=MODEL.run(pil_img)    
-
-#creating binary mask
-seg=cv2.resize(seg.astype(np.uint8),pil_img.size)
-mask_sel=(seg==15).astype(np.float32)
-mask = 255*mask_sel.astype(np.uint8)  
-
-#Blur the original image
-blurred_image = cv2.GaussianBlur(img,(255,255), 0)
-
-#Multiply mask and orinall image
-original_obj = cv2.bitwise_and(img,img,mask = mask)
-
-#inverse the binary mask
-inverse_mask = cv2.bitwise_not(mask)
-
-#Multiply blured image and inverse mask
-blur_bg = cv2.bitwise_and(blurred_image,blurred_image ,mask = inverse_mask)
-
-#now add the original obj image and blur bg image in order to obtain bukeh effect
-bukeh_effect = cv2.add(original_obj,blur_bg)
-
-
-cv2.imshow('Binary mask',mask)
-cv2.imshow('Blured image',blurred_image)
-cv2.imshow('Original Object',original_obj)
-cv2.imshow('Inverse binary mask',inverse_mask)
-cv2.imshow('Blur Background',blur_bg)
-cv2.imshow('Bukeh effect',bukeh_effect)
-
-cv2.waitKey(0)
+    
+    #Show the resultant images             
+    cv2.imshow('Binary mask',erosion)
+    cv2.imshow('Blured image',blurred_image)
+    cv2.imshow('Original Object',original_obj)
+    cv2.imshow('Inverse binary mask',inverse_mask)
+    cv2.imshow('Blur Background',blur_bg)
+    cv2.imshow('Bukeh effect',bukeh_effect)
+    
+    #increment the counter for second image
+    image_no += 1
+    
+    cv2.waitKey(3000)
+                
+        
