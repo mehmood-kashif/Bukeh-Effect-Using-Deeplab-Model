@@ -39,3 +39,7 @@ Binary Mask
 ![mask](https://user-images.githubusercontent.com/69388951/106386823-a7039080-63f8-11eb-8f13-b54b175a2bb2.png)
 
 
+Blur Image
+
+![blur](https://user-images.githubusercontent.com/69388951/106386863-dadeb600-63f8-11eb-954e-c6766dd254a7.png)
+
