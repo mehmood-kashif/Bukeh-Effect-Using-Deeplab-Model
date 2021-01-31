@@ -3,7 +3,7 @@
 """
 Created on Thu Jan 21 14:37:49 2021
 
-@author: joey
+@author: kashif Mehmood
 """
 
 import os
@@ -152,7 +152,7 @@ MODEL = DeepLabModel(download_path)
 print('model loaded successfully!')
 
 ###################################################################################################
-#input the image
+#input the image from the directory irrespective to their names and numbers
 image_no = 1   
 for img_name in os.listdir(args.input_dir):
 
@@ -169,15 +169,15 @@ for img_name in os.listdir(args.input_dir):
     #converting original image to BGR            
     opencvImage = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
     
-    #Use Morphological erotion process to reduce the noise, now this is erotic mask
+    #Use Morphological erotion process to reduce the noise, 
     kernel = np.ones((5,5),np.uint8)
     erosion = cv2.erode(mask,kernel,iterations = 1)
      
     #Blur the original image
     blurred_image = cv2.GaussianBlur(opencvImage,(255,255), 0)
                 
-    #Multiply erotic mask and orinall image
-    original_obj = cv2.bitwise_and(opencvImage,opencvImage,mask = erosion)
+    #Multiply mask and original image that produce non blur foreground
+    Nonblur_Foreground = cv2.bitwise_and(opencvImage,opencvImage,mask = erosion)
                 
     #inverse the binary mask
     inverse_mask = cv2.bitwise_not(erosion)
@@ -185,15 +185,15 @@ for img_name in os.listdir(args.input_dir):
     #Multiply blured image and inverse mask
     blur_bg = cv2.bitwise_and(blurred_image,blurred_image ,mask = inverse_mask)
                 
-    #now add the original obj image and blur bg image in order to obtain bukeh effect
-    bukeh_effect = cv2.add(original_obj,blur_bg)
+    #now add the Nonblur_Foreground image and blur bg image in order to obtain bukeh effect
+    bukeh_effect = cv2.add( Nonblur_Foreground,blur_bg)
     
     
     
     #Save the resultant images in directory             
     cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Binary Mask' + str(image_no) + '.jpg', erosion)
     cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Blurred Image' + str(image_no) + '.jpg', blurred_image)
-    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Original Object' + str(image_no) + '.jpg' , original_obj)
+    cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/ Nonblur_Foreground' + str(image_no) + '.jpg' ,  Nonblur_Foreground)
     cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Inverse Mask' + str(image_no) + '.jpg' , inverse_mask)
     cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Blur Background' + str(image_no) + '.jpg' , blur_bg)
     cv2.imwrite('/home/joey/Desktop/ML/project1/Bukeh Effect/Bukeh Effect' + str(image_no) + '.jpg', bukeh_effect)
@@ -202,7 +202,7 @@ for img_name in os.listdir(args.input_dir):
     #Show the resultant images             
     cv2.imshow('Binary mask',erosion)
     cv2.imshow('Blured image',blurred_image)
-    cv2.imshow('Original Object',original_obj)
+    cv2.imshow(' Nonblur_Foreground', Nonblur_Foreground)
     cv2.imshow('Inverse binary mask',inverse_mask)
     cv2.imshow('Blur Background',blur_bg)
     cv2.imshow('Bukeh effect',bukeh_effect)
