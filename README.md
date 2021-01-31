@@ -46,11 +46,9 @@ Some predicted Results
 
 ### Binary Mask
 
+![mask](https://user-images.githubusercontent.com/69388951/106396849-5b6ada00-642c-11eb-84c9-390160d55048.png)
 
 
-
-
-![mask](https://user-images.githubusercontent.com/69388951/106396686-696c2b00-642b-11eb-898d-4e412a84282d.png)
 
 
 
@@ -63,7 +61,8 @@ Some predicted Results
 
 
 
-![blur](https://user-images.githubusercontent.com/69388951/106386863-dadeb600-63f8-11eb-954e-c6766dd254a7.png)
+![blur](https://user-images.githubusercontent.com/69388951/106396866-63c31500-642c-11eb-9cd6-b27e35a71c27.png)
+
 
 
 
@@ -74,8 +73,7 @@ Some predicted Results
 
 
 
-![bukeh](https://user-images.githubusercontent.com/69388951/106386904-0a8dbe00-63f9-11eb-9f9d-b820c0e20135.jpg)
-
+![bukeh](https://user-images.githubusercontent.com/69388951/106396873-6aea2300-642c-11eb-990f-2b786e4b225c.jpg)
 
 ## For inference 
 
