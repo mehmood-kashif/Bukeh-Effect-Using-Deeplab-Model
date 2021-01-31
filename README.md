@@ -39,7 +39,7 @@ Some predicted Results
 
 
 
-![input](https://user-images.githubusercontent.com/69388951/106386740-4d9b6180-63f8-11eb-824e-0a6436fc1990.png)
+![orininal](https://user-images.githubusercontent.com/69388951/106396645-1b572780-642b-11eb-97c6-b1b96f7136cc.png)
 
 
 
